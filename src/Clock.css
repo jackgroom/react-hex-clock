@@ -1,0 +1,15 @@
+@import url('https://fonts.cdnfonts.com/css/century-gothic');
+
+.Clock {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -100%);
+}
+
+h1 {
+	font-size: 3vw;
+	color: white;
+	font-family: "Century Gothic", sans-serif;
+}

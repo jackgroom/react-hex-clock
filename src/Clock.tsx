@@ -1,6 +1,7 @@
 import { useState } from 'react';
-
 import { TimeStruct } from './GlobalStateProvider';
+
+import './Clock.css';
 
 interface Props {
   getCurrentTime: () => TimeStruct;
@@ -12,7 +13,12 @@ const Clock = ({ getCurrentTime }: Props) => {
 
   // TODO: get this to sync better with local system time
   setInterval(() => {
-    setTime(formatTime(getCurrentTime()));
+    let currentTime: TimeStruct = getCurrentTime();
+    let hexTime: string = formatTime(currentTime);
+
+    document.body.style.background = hexTime;
+
+    setTime(hexTime);
   }, 1000);
 
   return (
@@ -23,7 +29,7 @@ const Clock = ({ getCurrentTime }: Props) => {
 };
 
 const convertToHex = (numberToParse: number): string => {
-  return (numberToParse >>> 0).toString(16);
+  return '#' + (numberToParse >>> 0).toString(16);
 };
 
 const formatTime = (time: TimeStruct): string => {
@@ -35,9 +41,9 @@ const formatTime = (time: TimeStruct): string => {
     return current;
   };
 
-  return `${formatNumber(time.hours)}:${formatNumber(
+  return `#${formatNumber(time.hours)}${formatNumber(
     time.minutes
-  )}:${formatNumber(time.seconds)}`;
+  )}${formatNumber(time.seconds)}`;
 };
 
 export default Clock;
