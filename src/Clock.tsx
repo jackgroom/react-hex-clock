@@ -16,7 +16,7 @@ const Clock = ({ getCurrentTime }: Props) => {
     let currentTime: TimeStruct = getCurrentTime();
     let hexTime: string = formatTime(currentTime);
 
-    document.body.style.background = hexTime;
+    document.body.style.backgroundColor = hexTime;
 
     setTime(hexTime);
   }, 1000);
@@ -26,10 +26,6 @@ const Clock = ({ getCurrentTime }: Props) => {
       <h1>{time}</h1>
     </div>
   );
-};
-
-const convertToHex = (numberToParse: number): string => {
-  return '#' + (numberToParse >>> 0).toString(16);
 };
 
 const formatTime = (time: TimeStruct): string => {
