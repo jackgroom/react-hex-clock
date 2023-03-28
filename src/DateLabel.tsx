@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TimeStamp, TimeStruct, DateStruct } from './GlobalStateProvider';
 
 import MessageArrayStore from './MessageArrayStore';
+import './DateLabel.css';
 
 interface Props {
   getCurrentTimeStamp: () => TimeStamp;
@@ -21,7 +22,7 @@ const DateLabel = ({ getCurrentTimeStamp }: Props) => {
 
   return (
     <div className="DateLabel">
-      <p>{date}</p>
+      <h3>{date}</h3>
     </div>
   );
 };
