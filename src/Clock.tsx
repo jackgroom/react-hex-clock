@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { TimeStruct } from './GlobalStateProvider';
+import { TimeStamp, TimeStruct, DateStruct } from './GlobalStateProvider';
 
 import './Clock.css';
 
 interface Props {
-  getCurrentTime: () => TimeStruct;
+  getCurrentTimeStamp: () => TimeStamp;
 }
 
-const Clock = ({ getCurrentTime }: Props) => {
-  let currentTime: string = formatTime(getCurrentTime());
+const Clock = ({ getCurrentTimeStamp }: Props) => {
+  let currentTime: string = formatTime(getCurrentTimeStamp().time);
   const [time, setTime] = useState(currentTime);
 
   // TODO: get this to sync better with local system time
   setInterval(() => {
-    let currentTime: TimeStruct = getCurrentTime();
+    let currentTime: TimeStruct = getCurrentTimeStamp().time;
     let formattedTime: string = formatTime(currentTime);
 
     document.body.style.backgroundColor = formattedTime;

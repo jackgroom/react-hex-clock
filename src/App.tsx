@@ -1,24 +1,40 @@
 import React from 'react';
 import Clock from './Clock';
 import Message from './Message';
+import DateLabel from './DateLabel';
 
-import { TimeStruct } from './GlobalStateProvider';
+import { TimeStamp, TimeStruct, DateStruct } from './GlobalStateProvider';
 
 function App() {
   // created this in main app component since it will be needed by both clock and message components
-  const getCurrentTime = (): TimeStruct => {
+  const getCurrentTimeStamp = (): TimeStamp => {
     let current: Date = new Date();
-    let hours: number = current.getHours();
-    let minutes: number = current.getMinutes();
-    let seconds: number = current.getSeconds();
 
-    return { hours, minutes, seconds };
+    let time: TimeStruct = {
+      hours: current.getHours(),
+      minutes: current.getMinutes(),
+      seconds: current.getSeconds(),
+    };
+
+    let date: DateStruct = {
+      day: current.getDate(),
+      month: current.getMonth(),
+      year: current.getFullYear(),
+
+      dayOfWeek: current.getDay(),
+    };
+
+    return {
+      time,
+      date,
+    };
   };
 
   return (
     <div className="App">
-      <Clock getCurrentTime={getCurrentTime} />
-      <Message getCurrentTime={getCurrentTime} />
+      <Clock getCurrentTimeStamp={getCurrentTimeStamp} />
+      {/* <Message getCurrentTimeStamp={getCurrentTimeStamp} /> */}
+      <DateLabel getCurrentTimeStamp={getCurrentTimeStamp} />
     </div>
   );
 }

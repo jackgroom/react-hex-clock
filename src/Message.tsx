@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import { TimeStruct } from './GlobalStateProvider';
+import { TimeStamp, TimeStruct, DateStruct } from './GlobalStateProvider';
 
+import MessageArrayStore from './MessageArrayStore';
 interface Props {
-  getCurrentTime: () => TimeStruct;
+  getCurrentTimeStamp: () => TimeStamp;
 }
 
-const Message = ({ getCurrentTime }: Props) => {
+const Message = ({ getCurrentTimeStamp }: Props) => {
   return (
     <div className="Message">
-      <p>This is a test</p>
+      <p></p>
     </div>
   );
 };
