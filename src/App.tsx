@@ -1,5 +1,6 @@
 import React from 'react';
 import Clock from './Clock';
+import Message from './Message';
 
 import { TimeStruct } from './GlobalStateProvider';
 
@@ -17,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <Clock getCurrentTime={getCurrentTime} />
+      <Message getCurrentTime={getCurrentTime} />
     </div>
   );
 }

@@ -14,11 +14,11 @@ const Clock = ({ getCurrentTime }: Props) => {
   // TODO: get this to sync better with local system time
   setInterval(() => {
     let currentTime: TimeStruct = getCurrentTime();
-    let hexTime: string = formatTime(currentTime);
+    let formattedTime: string = formatTime(currentTime);
 
-    document.body.style.backgroundColor = hexTime;
+    document.body.style.backgroundColor = formattedTime;
 
-    setTime(hexTime);
+    setTime(formattedTime);
   }, 1000);
 
   return (
@@ -40,6 +40,15 @@ const formatTime = (time: TimeStruct): string => {
   return `#${formatNumber(time.hours)}${formatNumber(
     time.minutes
   )}${formatNumber(time.seconds)}`;
+};
+
+// deprecated / unused
+const convertTimeToHex = (formattedTime: string): string => {
+  let trimmed: string = formattedTime.replace(/#/g, '');
+  let power: number = Number(trimmed) ** 2;
+  let remainder: number = power % 1000000;
+
+  return `#${remainder}`;
 };
 
 export default Clock;
