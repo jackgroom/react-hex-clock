@@ -1,9 +1,9 @@
 import React from 'react';
-import Clock from './Clock';
-import Message from './Message';
-import DateLabel from './DateLabel';
+import Clock from './components/Clock';
+import Message from './components/Message';
+import DateLabel from './components/DateLabel';
 
-import { TimeStamp, TimeStruct, DateStruct } from './GlobalStateProvider';
+import { TimeStamp, TimeStruct, DateStruct } from './interfaces/TimeStamp';
 
 function App() {
   // created this in main app component since it will be needed by both clock and message components
@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <Clock getCurrentTimeStamp={getCurrentTimeStamp} />
-      {/* <Message getCurrentTimeStamp={getCurrentTimeStamp} /> */}
+      <Message getCurrentTimeStamp={getCurrentTimeStamp} />
       <DateLabel getCurrentTimeStamp={getCurrentTimeStamp} />
     </div>
   );

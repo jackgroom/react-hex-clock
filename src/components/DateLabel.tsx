@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { TimeStamp, TimeStruct, DateStruct } from './GlobalStateProvider';
+import { TimeStamp, TimeStruct, DateStruct } from '../interfaces/TimeStamp';
 
-import MessageArrayStore from './MessageArrayStore';
+import MessageArrayStore from '../resources/DateStrings';
 import './DateLabel.css';
 
 interface Props {

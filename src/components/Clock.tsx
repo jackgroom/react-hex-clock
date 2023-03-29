@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { TimeStamp, TimeStruct, DateStruct } from './GlobalStateProvider';
+import { TimeStamp, TimeStruct, DateStruct } from '../interfaces/TimeStamp';
 
 import './Clock.css';
 
