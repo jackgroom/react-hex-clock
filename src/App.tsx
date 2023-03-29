@@ -3,6 +3,8 @@ import Clock from './components/Clock';
 import Message from './components/Message';
 import DateLabel from './components/DateLabel';
 
+import './App.css';
+
 import { TimeStamp, TimeStruct, DateStruct } from './interfaces/TimeStamp';
 
 function App() {

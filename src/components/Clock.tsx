@@ -23,7 +23,7 @@ const Clock = ({ getCurrentTimeStamp }: Props) => {
 
   return (
     <div className="Clock">
-      <h1>{time}</h1>
+      <h1 className="CurrentTime">{time}</h1>
     </div>
   );
 };

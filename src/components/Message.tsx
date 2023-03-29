@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { TimeStamp, TimeStruct, DateStruct } from '../interfaces/TimeStamp';
 
-import MessageArrayStore from '../resources/DateStrings';
+import './Message.css';
+import DateStrings from '../resources/DateStrings';
 interface Props {
   getCurrentTimeStamp: () => TimeStamp;
 }
@@ -9,7 +10,7 @@ interface Props {
 const Message = ({ getCurrentTimeStamp }: Props) => {
   return (
     <div className="Message">
-      <p></p>
+      <h3>Message</h3>
     </div>
   );
 };
