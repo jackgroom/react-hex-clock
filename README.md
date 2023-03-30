@@ -6,11 +6,11 @@ This project is not finished, so expect bugs and unimplemented features (obvious
 
 ### Planned features
 
-[ ] Typewriter effect
-[ ] Information on local weather
-[ ] Information on daylight savings
-[ ] CSS improvements (i am terrible at css)
-[ ] Better string storage management
+- [ ] Typewriter effect
+- [ ] Information on local weather
+- [ ] Information on daylight savings
+- [ ] CSS improvements (i am terrible at css)
+- [ ] Better string storage management
 
 ## Running the project
 
