@@ -1,16 +1,17 @@
+import { MessageType } from '../enums/MessageType';
+
 export default {
-  default: [
+  [MessageType.default]: [
     'For all you bird brains out there, the format is: 00:00:00 (hour, minute, second)',
-    // days[date.wday].." "..date.day.." "..months[date.month].." , "..date.year,
     // "For you bird brains out there, the format is: 00:00:00 (hour, minute, second)",
     // "Aren't hex codes lovely?",
     // "Daylight savings: "..dls,
     // "Current day in year: "..date.yday,
-    // "Days until christmas: "..(359 - date.yday),
+    // "Days until christmas: "..(359 (359 - date.yday)),
     // "Current time in idiot format: "..hour..":"..min..":"..sec,
     // "How's this "..days[date.wday].." treating you so far?"
   ],
-  morning: [
+  [MessageType.morning]: [
     'Good morning!',
     "Hope you're feeling nice and awake this morning.",
     'Have you had your breakfast yet?',
@@ -22,7 +23,7 @@ export default {
     'Which one do you prefer; cereal or toast?',
     'Hope you have a good day today.',
   ],
-  afternoon: [
+  [MessageType.afternoon]: [
     'Good afternoon.',
     'Eaten lunch yet?',
     "Hope it's sunny and warm where you are.",
@@ -30,7 +31,7 @@ export default {
     'I should probably make lunch soon...',
     "I bet you're having so much fun, sitting here watching time tick by...",
   ],
-  evening: [
+  [MessageType.evening]: [
     "I'm getting sleepy...",
     'What a beautiful sunset.',
     'Should probably head to bed soon...',
@@ -42,7 +43,7 @@ export default {
     'You know, you should stop using all electronics 30 minutes before bed.',
   ],
 
-  night: [
+  [MessageType.night]: [
     "You're up a bit late, aren't you?",
     // "You do know it's "..date.hour.." AM, right...?",
     "Don't you have school tomorrow? (or should I say, this morning).",

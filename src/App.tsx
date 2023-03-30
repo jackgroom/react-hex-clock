@@ -3,13 +3,15 @@ import Clock from './components/Clock';
 import Message from './components/Message';
 import DateLabel from './components/DateLabel';
 
+import { useCallback } from 'react';
+
 import './App.css';
 
 import { TimeStamp, TimeStruct, DateStruct } from './interfaces/TimeStamp';
 
 function App() {
   // created this in main app component since it will be needed by both clock and message components
-  const getCurrentTimeStamp = (): TimeStamp => {
+  const getCurrentTimeStamp = useCallback((): TimeStamp => {
     let current: Date = new Date();
 
     let time: TimeStruct = {
@@ -30,7 +32,7 @@ function App() {
       time,
       date,
     };
-  };
+  }, []);
 
   return (
     <div className="App">

@@ -1,33 +1,57 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
 import { TimeStamp, TimeStruct, DateStruct } from '../interfaces/TimeStamp';
+import { MessageType } from '../enums/MessageType';
 
 import './Message.css';
-import DateStrings from '../resources/DateStrings';
+
+import getMessageString from '../util/MessageStringHandler';
 interface Props {
   getCurrentTimeStamp: () => TimeStamp;
 }
 
 const Message = ({ getCurrentTimeStamp }: Props) => {
+  let [message, setMessage] = useState('');
+
+  useEffect(() => {
+    setInterval(() => {
+      let currentTimeStamp: TimeStamp = getCurrentTimeStamp();
+      let randomMessageType: MessageType = getRandomMessageType(
+        currentTimeStamp.time.hours
+      );
+
+      let randomMessage: string = getMessageString(MessageType.evening);
+      setMessage(randomMessage);
+    }, 5000);
+  }, []);
+
   return (
     <div className="Message">
-      <h3>is it fixed?</h3>
+      <h3>{message}</h3>
     </div>
   );
 };
 
-const convertHourToTimeString = (currentHour: number): string => {
+const getRandomMessageType = (currentHour: number): MessageType => {
+  let coinflip: number = Math.random();
+  return coinflip >= 0.5
+    ? convertHourToTimeString(currentHour)
+    : MessageType.default;
+};
+
+const convertHourToTimeString = (currentHour: number): MessageType => {
   // preferred switch case for readability compared to if/else
   switch (true) {
     case currentHour >= 6 && currentHour < 12:
-      return 'morning';
+      return MessageType.morning;
     case currentHour >= 12 && currentHour < 17:
-      return 'afternoon';
+      return MessageType.afternoon;
     case currentHour >= 17 && currentHour < 24:
-      return 'evening';
+      return MessageType.evening;
     case currentHour >= 0 && currentHour < 6:
-      return 'night';
+      return MessageType.night;
     default:
-      return 'default';
+      return MessageType.default;
   }
 };
 
