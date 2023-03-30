@@ -10,7 +10,7 @@ interface Props {
 const Message = ({ getCurrentTimeStamp }: Props) => {
   return (
     <div className="Message">
-      <h3>Message</h3>
+      <h3>is it fixed?</h3>
     </div>
   );
 };
