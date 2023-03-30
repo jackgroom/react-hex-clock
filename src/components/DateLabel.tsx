@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { TimeStamp, TimeStruct, DateStruct } from '../interfaces/TimeStamp';
+import getCurrentTimeStamp from '../util/GetCurrentTimeStamp';
 
-import MessageArrayStore from '../resources/DateStrings';
+import DateStrings from '../resources/DateStrings';
 import './DateLabel.css';
 
-interface Props {
-  getCurrentTimeStamp: () => TimeStamp;
-}
+interface Props {}
 
-const DateLabel = ({ getCurrentTimeStamp }: Props) => {
+const DateLabel = ({}: Props) => {
   let dateStruct: DateStruct = getCurrentTimeStamp().date;
   let formattedDate: string = formatDate(dateStruct);
   let [date, setDate] = useState(formattedDate);
@@ -28,8 +27,8 @@ const DateLabel = ({ getCurrentTimeStamp }: Props) => {
 };
 
 const formatDate = (date: DateStruct): string => {
-  let dayAsString: string = MessageArrayStore.days[date.dayOfWeek];
-  let monthAsString: string = MessageArrayStore.months[date.month];
+  let dayAsString: string = DateStrings.days[date.dayOfWeek];
+  let monthAsString: string = DateStrings.months[date.month];
   let ordinalSuffix: string = getOrdinalSuffix(date.day);
 
   return `${dayAsString} ${date.day}${ordinalSuffix} ${monthAsString} ${date.year}`;

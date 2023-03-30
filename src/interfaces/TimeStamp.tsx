@@ -10,6 +10,7 @@ export interface DateStruct {
   year: number;
 
   dayOfWeek: number;
+  dayOfYear: number;
 }
 
 export interface TimeStamp {

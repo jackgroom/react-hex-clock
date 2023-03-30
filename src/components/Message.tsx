@@ -1,16 +1,14 @@
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, useRef } from 'react';
 import { TimeStamp, TimeStruct, DateStruct } from '../interfaces/TimeStamp';
 import { MessageType } from '../enums/MessageType';
+import getCurrentTimeStamp from '../util/GetCurrentTimeStamp';
 
 import './Message.css';
 
 import getMessageString from '../util/MessageStringHandler';
-interface Props {
-  getCurrentTimeStamp: () => TimeStamp;
-}
+interface Props {}
 
-const Message = ({ getCurrentTimeStamp }: Props) => {
+const Message = ({}: Props) => {
   let [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -19,11 +17,10 @@ const Message = ({ getCurrentTimeStamp }: Props) => {
       let randomMessageType: MessageType = getRandomMessageType(
         currentTimeStamp.time.hours
       );
-
-      let randomMessage: string = getMessageString(MessageType.evening);
+      let randomMessage: string = getMessageString(randomMessageType);
       setMessage(randomMessage);
     }, 5000);
-  }, []);
+  }, [setMessage]);
 
   return (
     <div className="Message">
@@ -33,6 +30,7 @@ const Message = ({ getCurrentTimeStamp }: Props) => {
 };
 
 const getRandomMessageType = (currentHour: number): MessageType => {
+  // return convertHourToTimeString(currentHour);
   let coinflip: number = Math.random();
   return coinflip >= 0.5
     ? convertHourToTimeString(currentHour)

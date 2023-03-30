@@ -1,17 +1,42 @@
 import { MessageType } from '../enums/MessageType';
+import { TimeStamp } from '../interfaces/TimeStamp';
 
-export default {
-  [MessageType.default]: [
-    'For all you bird brains out there, the format is: 00:00:00 (hour, minute, second)',
-    // "For you bird brains out there, the format is: 00:00:00 (hour, minute, second)",
-    // "Aren't hex codes lovely?",
+import DateStrings from './DateStrings';
+
+// note: i didn't want this file to contain logic, since in my mind resources should just be raw text, however i have not as of yet been able to
+// come up with a better solution than this, since a few of the messages that I wanted to include required external information on time and date
+
+const getMessageStrings = (
+  messageType: MessageType,
+  timeStamp: TimeStamp
+): Array<string> => {
+  switch (messageType) {
+    case MessageType.default:
+      return getDefaultStrings(timeStamp);
+    case MessageType.morning:
+      return getMorningStrings();
+    case MessageType.afternoon:
+      return getAfternoonStrings();
+    case MessageType.evening:
+      return getEveningStrings();
+    case MessageType.night:
+      return getNightStrings(timeStamp);
+  }
+};
+
+const getDefaultStrings = (timeStamp: TimeStamp): Array<string> => {
+  return [
+    'The format is: 00:00:00 (hour, minute, second)',
+    "Aren't hex codes lovely?",
     // "Daylight savings: "..dls,
-    // "Current day in year: "..date.yday,
-    // "Days until christmas: "..(359 (359 - date.yday)),
-    // "Current time in idiot format: "..hour..":"..min..":"..sec,
-    // "How's this "..days[date.wday].." treating you so far?"
-  ],
-  [MessageType.morning]: [
+    `Current day in year: ${timeStamp.date.dayOfYear}`,
+    `Days until christmas: ${359 - timeStamp.date.dayOfYear}`, // not exactly accurate
+    `How's this ${DateStrings.days[timeStamp.date.dayOfWeek]} been so far?`,
+  ];
+};
+
+const getMorningStrings = (): Array<string> => {
+  return [
     'Good morning!',
     "Hope you're feeling nice and awake this morning.",
     'Have you had your breakfast yet?',
@@ -22,16 +47,22 @@ export default {
     'Did you even go to sleep?',
     'Which one do you prefer; cereal or toast?',
     'Hope you have a good day today.',
-  ],
-  [MessageType.afternoon]: [
+  ];
+};
+
+const getAfternoonStrings = (): Array<string> => {
+  return [
     'Good afternoon.',
     'Eaten lunch yet?',
     "Hope it's sunny and warm where you are.",
     "How's the weather treating you this afternoon?",
     'I should probably make lunch soon...',
     "I bet you're having so much fun, sitting here watching time tick by...",
-  ],
-  [MessageType.evening]: [
+  ];
+};
+
+const getEveningStrings = (): Array<string> => {
+  return [
     "I'm getting sleepy...",
     'What a beautiful sunset.',
     'Should probably head to bed soon...',
@@ -41,18 +72,22 @@ export default {
     'Have you eaten dinner yet?',
     "Don't forget to brush your teeth.",
     'You know, you should stop using all electronics 30 minutes before bed.',
-  ],
+  ];
+};
 
-  [MessageType.night]: [
+const getNightStrings = (timeStamp: TimeStamp): Array<string> => {
+  return [
     "You're up a bit late, aren't you?",
-    // "You do know it's "..date.hour.." AM, right...?",
-    "Don't you have school tomorrow? (or should I say, this morning).",
+    `You do know it's ${timeStamp.time.hours} AM, right...?`,
+    "Don't you have school or work tomorrow? (or should I say, this morning).",
     'Bit of a night owl, are you?',
     'It certainly is peaceful this time of night',
     'You should probably go to sleep...',
-    "You're going to regret staying up this late in the morning. (Oh wait; it is the morning)",
+    "You're going to regret staying up this late in the morning. (Oh, wait; it is the morning)",
     'How about a midnight snack?',
     "Man, I'm getting sleepy.",
-    "Go to sleep already, you're keeping me awake.",
-  ],
+    "Go to sleep already. You're keeping me awake.",
+  ];
 };
+
+export default getMessageStrings;

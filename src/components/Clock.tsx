@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { TimeStamp, TimeStruct, DateStruct } from '../interfaces/TimeStamp';
+import getCurrentTimeStamp from '../util/GetCurrentTimeStamp';
 
 import './Clock.css';
 
-interface Props {
-  getCurrentTimeStamp: () => TimeStamp;
-}
+interface Props {}
 
-const Clock = ({ getCurrentTimeStamp }: Props) => {
+const Clock = ({}: Props) => {
   let currentTime: string = formatTime(getCurrentTimeStamp().time);
   const [time, setTime] = useState(currentTime);
 

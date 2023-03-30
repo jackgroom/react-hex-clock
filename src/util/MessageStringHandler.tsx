@@ -1,5 +1,8 @@
 import { MessageType } from '../enums/MessageType';
-import MessageStrings from '../resources/MessageStrings';
+import { TimeStamp } from '../interfaces/TimeStamp';
+
+import getMessageStrings from '../resources/MessageStrings';
+import getCurrentTimeStamp from './GetCurrentTimeStamp';
 
 type UnusedIndexesCache = Map<MessageType, Array<number>>;
 const Cache: UnusedIndexesCache = new Map<MessageType, Array<number>>();
@@ -12,7 +15,7 @@ const getMessageString = (messageType: MessageType): string => {
 
   last = randomIndex;
 
-  return MessageStrings[messageType][randomIndex];
+  return getMessageStrings(messageType, getCurrentTimeStamp())[randomIndex];
 };
 
 const getIndexArray = (messageType: MessageType): Array<number> => {
@@ -33,12 +36,7 @@ const getRandomIndex = (messageType: MessageType): number => {
   }
 
   let randomIndex: number = Math.floor(Math.random() * indexArray.length);
-
-  if (randomIndex == last) {
-    return getRandomIndex(messageType);
-  } else {
-    return indexArray[randomIndex];
-  }
+  return indexArray[randomIndex];
 };
 
 const removeIndexFromCache = (
@@ -55,7 +53,10 @@ const removeIndexFromCache = (
 };
 
 const fillMessageTypeCache = (messageType: MessageType) => {
-  let stringArray: Array<string> = MessageStrings[messageType];
+  let stringArray: Array<string> = getMessageStrings(
+    messageType,
+    getCurrentTimeStamp()
+  );
   let newArray: Array<number> = [...Array(stringArray.length).keys()];
   Cache.set(messageType, newArray);
 };
